@@ -12,8 +12,10 @@ const Card = styled.div`
   width: 300px;
   text-align: center;
   background: #fff;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
   &:hover {
-    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   }
 `;
 
@@ -22,9 +24,9 @@ const ProductImage = styled.img`
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
   &:hover {
     transform: scale(1.05);
-    transition: transform 0.5s;
   }
 `;
 
@@ -32,6 +34,7 @@ const ProductName = styled.h3`
   margin: 0.5em 0;
   color: #333;
   font-size: 1em;
+  font-weight: bold;
 `;
 
 const ProductPrice = styled.div`
@@ -53,5 +56,6 @@ const ProductCard = ({ product }) => {
   );
 };
 
-//export default ProductCard;
-export { ProductCard };
+// Choose either default or named export depending on how you want to import it elsewhere
+export default ProductCard;
+// export { ProductCard }; // Named export, remove or comment out if using default export

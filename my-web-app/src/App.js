@@ -6,6 +6,8 @@ import AdminPanel from './pages/AdminPanel';
 import NavBar from './components/NavBar';
 import GlobalStyles from './GlobalStyles';
 
+
+
 function App() {
   return (
     <>

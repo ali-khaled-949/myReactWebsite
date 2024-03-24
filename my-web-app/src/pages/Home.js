@@ -1,49 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import '../App.css'; // Assuming your CSS file is named App.css and is located in the src directory
+import '../App.css'; // Ensure the path is correct
+import heroImage from '../images/hero-bg.jpg'; // Update path accordingly
+
+const categories = ['all', 'electronics', 'jewelery', "men's clothing", "women's clothing"];
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('all');
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then((response) => response.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data);
+        setFilteredProducts(data);
+      })
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
 
+  const filterProducts = (category) => {
+    setActiveCategory(category);
+    if (category === 'all') {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(products.filter((product) => product.category === category));
+    }
+  };
+
   return (
     <div>
-      {/* Hero section */}
-      <div className="hero">
-        <h1>Welcome to Our Store</h1>
+      <div className="hero" style={{ backgroundImage: `url(${heroImage})` }}>
+        <h1>Mock Up Standard store by Ali Khaled</h1>
+        <p>Created with React, Javascript, CSS</p>
       </div>
 
-      {/* Navigation - you would replace this with your actual navigation component */}
-      <nav className="navigation">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-      </nav>
+      {/* ... rest of your code remains unchanged ... */}
 
-      {/* Filters - you would replace this with your actual filter component */}
       <div className="filters">
-        <button>Filter 1</button>
-        <button>Filter 2</button>
-        <button>Filter 3</button>
+        {categories.map((category) => (
+          <button
+            key={category}
+            onClick={() => filterProducts(category)}
+            className={activeCategory === category ? 'active' : ''}
+          >
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </button>
+        ))}
       </div>
 
-      {/* Products Grid */}
       <div className="products-grid">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
 
-      {/* Footer - you would replace this with your actual footer component */}
-      <footer className="footer">
-        <div>Footer Content Here</div>
-      </footer>
+      {/* ... footer ... */}
     </div>
   );
 };

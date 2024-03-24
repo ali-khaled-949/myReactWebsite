@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div>
       <div className="hero" style={{ backgroundImage: `url(${heroImage})` }}>
-        <h1>Mock Up Standard store by Ali Khaled</h1>
+        <h1>Mock Up Standard Gallery for a store by Ali Khaled</h1>
         <p>Created with React, Javascript, CSS</p>
       </div>
 

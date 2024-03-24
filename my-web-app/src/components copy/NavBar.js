@@ -27,7 +27,6 @@ const NavBar = () => {
         <NavLink to="/">My E-Commerce Site</NavLink>
       </div>
       <div>
-        <NavLink to="/admin">Admin Panel</NavLink>
       </div>
     </Nav>
   );
